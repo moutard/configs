@@ -18,12 +18,14 @@ Contains
 
 Installation
 
-      Clone the repo configs
+      ```Clone the repo configs
       git clone git@github.com:moutard/configs.git $CLONEDIR
-      # Make a link to vim parameters
+      " Make a link to vim parameters
       ln -s ~/.vim $CLONEDIR/configs/vim
-      # Clone vundle
+      " Clone vundle
       git clone https://github.com/gmarik/vundle.git $CLONEDIR/configs/vim/bundle/vundle
+      ```
+
       # Vimrc is already configured for vundle
       Launch `vim`, run `:BundleInstall`
 
@@ -38,8 +40,8 @@ Awesome
 
 `aptitude install awesome awesome-extra`
 `mkdir ~/.config/awesome`
-
+      ```
       ln -s ~/.config/awesome $CLONEDIR/configs/awesome
-
+      ```
   - See the doc for more informations.
   http://doc.ubuntu-fr.org/awesome
