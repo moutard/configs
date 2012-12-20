@@ -5,7 +5,7 @@ Used to save my personnal configs and profiles like my vimrc or my awesome wm rc
 
 Vim
 ---
-1. Contains
+Contains
   - .vimrc
   - colors
   I used tango2 color scheme, that is in the folder vim colors.
@@ -15,9 +15,10 @@ Vim
   `https://github.com/gmarik/vundle
   git clone`
 
-2. Installation
 
-      #Clone the repo configs
+Installation
+
+      Clone the repo configs
       git clone git@github.com:moutard/configs.git $CLONEDIR
       # Make a link to vim parameters
       ln -s ~/.vim $CLONEDIR/configs/vim
