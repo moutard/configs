@@ -229,6 +229,12 @@ Bundle 'gmarik/vundle'
 " original repos on github
 Bundle 'tpope/vim-fugitive'
 Bundle 'scrooloose/nerdtree'
+" Specific python
+Bundle 'jcrocholl/pep8'
+Bundle 'vim-scripts/pydoc.vim'
+" Depends on the python pyflakes package (pip install pyflakes)
+Bundle 'mitechie/pyflakes-pathogen'
+
 
 """"""""""""""""""""""""""""""
 " => NERDTree
