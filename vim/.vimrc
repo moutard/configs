@@ -1,3 +1,8 @@
+"Can be: linux, mac, windows
+fun! MySys()
+  return "unix"
+endfun
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Sections:
 "    -> General
