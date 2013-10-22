@@ -1,6 +1,6 @@
 "Can be: linux, mac, windows
 fun! MySys()
-  return "unix"
+  return "linux"
 endfun
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -12,22 +12,19 @@ endfun
 "    -> Text, tab and indent related
 "    -> Visual mode related
 "    -> Command mode related
-"    -> Moving around, tabs and buffers
-"    -> Statusline
-"    -> Parenthesis/bracket expanding
-"    -> General Abbrevs
-"    -> Editing mappings
 "
-"    -> Cope
 "    -> Minibuffer plugin
 "    -> Omni complete functions
 "    -> Python section
 "    -> JavaScript section
 "
+" Bundle:
+"   Use bundle to install and update plugin.
 "
 " Plugins_Included:
 "     > minibufexpl.vim - http://www.vim.org/scripts/script.php?script_id=159
 "       Makes it easy to get an overview of buffers:
+"           create a window with all the opened buffers.
 "           info -> :e ~/.vim_runtime/plugin/minibufexpl.vim
 "
 "     > bufexplorer - http://www.vim.org/scripts/script.php?script_id=42
@@ -37,11 +34,8 @@ endfun
 "     > yankring.vim - http://www.vim.org/scripts/script.php?script_id=1234
 "       Emacs's killring, useful when using the clipboard:
 "           info -> :help yankring
-"
-"     > surround.vim - http://www.vim.org/scripts/script.php?script_id=1697
-"       Makes it easy to work with surrounding text:
-"           info -> :help surround
-"
+
+"     (Optional - Install if you want)
 "     > snipMate.vim - http://www.vim.org/scripts/script.php?script_id=2540
 "       Snippets for many languages (similar to TextMate's):
 "           info -> :help snipMate
@@ -50,10 +44,6 @@ endfun
 "       Plugin to manage Most Recently Used (MRU) files:
 "           info -> :e ~/.vim_runtime/plugin/mru.vim
 "
-"     > Command-T - http://www.vim.org/scripts/script.php?script_id=3025
-"       Command-T plug-in provides an extremely fast, intuitive mechanism for opening filesa:
-"           info -> :help CommandT
-"           screencast and web-help -> http://amix.dk/blog/post/19501
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => General
@@ -150,10 +140,10 @@ if has("gui_running")
   set background=dark
   colorscheme tango2
 else
-  "colorscheme blugrine
+  " need a 256 colors scheme
+  " colorscheme blugrine
 endif
 
-"colorscheme tango2
 
 set encoding=utf8
 try
@@ -163,10 +153,6 @@ endtry
 
 set ffs=unix,dos,mac "Default file types
 set colorcolumn=80
-
-"Use to call special theme for less"
-call pathogen#infect()
-nnoremap ,m :w <BAR> !lessc % > %:t:r.css<CR><space>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Files, backups and undo
@@ -203,9 +189,58 @@ set ai "Auto indent
 set si "Smart indent
 set wrap "Wrap lines
 
+
 """"""""""""""""""""""""""""""
-" => Minibuffer plugin
+" => Plugins Installation
+"
+"
+" We use a specific plugin called vundle that allow to install
+" plugin hosted by github.
+" It make very easy to install and update plugin.
+" just install vundle then call :BundleInstall
 """"""""""""""""""""""""""""""
+
+" Vundle allow you to simple handle plugin.
+"filetype off "Vundle required!
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
+" let Vundle manage Vundle
+" required!
+Bundle 'gmarik/vundle'
+
+
+" My Bundles here:
+
+" Official repos (using vim-scripts repo)
+Bundle 'vim-scripts/L9'
+Bundle 'vim-scripts/FuzzyFinder'
+Bundle 'vim-scripts/YankRing.vim'
+Bundle 'vim-scripts/grep.vim'
+
+" Non Official repos (make sure the are maintained.)
+Bundle 'tpope/vim-fugitive'
+Bundle 'scrooloose/nerdtree'
+Bundle 'fholgado/minibufexpl.vim'
+
+""""""""""""""""""""""""""""""
+" => Plugin Configuration
+""""""""""""""""""""""""""""""
+
+
+""""""""""""""""""""""""""""""
+" - FuzzyFinder
+""""""""""""""""""""""""""""""
+nnoremap a :FufFile **/<CR>
+
+""""""""""""""""""""""""""""""
+" - NERDTree
+""""""""""""""""""""""""""""""
+nmap <F2> :NERDTree<CR>
+
+""""""""""""""""""""""""""""""
+" - Minibuffer plugin
+""""""""""""""""""""""""""""""
+
 let g:miniBufExplModSelTarget = 1
 let g:miniBufExplorerMoreThanOne = 2
 let g:miniBufExplModSelTarget = 0
@@ -216,32 +251,4 @@ let g:miniBufExplSplitBelow=1
 
 let g:bufExplorerSortBy = "name"
 
-autocmd BufRead,BufNew :call UMiniBufExplorer
-
-map <leader>u :TMiniBufExplorer<cr>
-""""""""""""""""""""""""""""""
-" => plugin
-""""""""""""""""""""""""""""""
-
-" Vundle allow you to simple handle plugin.
-"filetype off "Vundle required!
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
-" let Vundle manage Vundle
-" required!
-Bundle 'gmarik/vundle'
-" My Bundles here:
-" original repos on github
-Bundle 'tpope/vim-fugitive'
-Bundle 'scrooloose/nerdtree'
-" Specific python
-Bundle 'jcrocholl/pep8'
-Bundle 'vim-scripts/pydoc.vim'
-" Depends on the python pyflakes package (pip install pyflakes)
-Bundle 'mitechie/pyflakes-pathogen'
-
-
-""""""""""""""""""""""""""""""
-" => NERDTree
-""""""""""""""""""""""""""""""
-"nmap <F2> :NERDTree<CR>
+autocmd BufRead,BufNew :call MBEToggle
